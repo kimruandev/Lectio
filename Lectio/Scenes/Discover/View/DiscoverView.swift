@@ -37,7 +37,7 @@ struct DiscoverView: View {
                         }
                     }
                     .listStyle(InsetGroupedListStyle())
-                    .navigationTitle("Descobrir")
+                    .navigationTitle(String(localized: "NavBar.Discover"))
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: { /* Refresh */ }) {

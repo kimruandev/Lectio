@@ -2,37 +2,39 @@
 //  AddBookView.swift
 //  Lectio
 //
-import Combine
 //  Created by Kim Lopes on 08/09/26.
 //
 
+import Combine
 import SwiftUI
 
 struct AddBookView: View {
     let onAdd: (Book, ShelfItem.ReadingStatus) -> Void
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var viewModel = AddBookViewModel()
-    
+
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Adicionar Livro")) {
-                    TextField("Título do Livro", text: $viewModel.title)
-                    TextField("Autor", text: $viewModel.author)
-                    
+                Section(header: Text(String(localized: "SectionHeader.AddBook"))) {
+                    TextField(String(localized: "Placeholder.BookTitle"), text: $viewModel.title)
+                    TextField(String(localized: "Placeholder.Author"), text: $viewModel.author)
+
                     Stepper(value: $viewModel.pageCount, in: 1...5000) {
-                        Text("\(viewModel.pageCount) páginas")
+                        Text("\(viewModel.pageCount) \(String(localized: "Stepper.Pages"))")
                     }
-                    
+
                     Stepper(value: $viewModel.chapterCount, in: 0...1000) {
-                        Text(viewModel.chapterCount == 0 ? "Capítulos: Não informado" : "\(viewModel.chapterCount) capítulos")
+                        Text(viewModel.chapterCount == 0 ?
+                            String(localized: "Stepper.ChaptersNone") :
+                            "\(viewModel.chapterCount) \(String(localized: "Stepper.Pages"))")
                     }
-                    
-                    TextField("Gêneros (separados por vírgula)", text: $viewModel.genres)
+
+                    TextField(String(localized: "Placeholder.Genres"), text: $viewModel.genres)
                         .placeholder(when: viewModel.genres.isEmpty) {
-                            Text("Ex: Fantasia, Romance, Ficção Científica").foregroundColor(.gray)
+                            Text(String(localized: "Placeholder.GenresExample")).foregroundColor(.gray)
                         }
-                    
+
                     TextEditor(text: $viewModel.synopsis)
                         .frame(height: 100)
                         .overlay(
@@ -40,21 +42,21 @@ struct AddBookView: View {
                                 .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
                         )
                 }
-                
-                Section(header: Text("Status Inicial")) {
-                    Picker("Status", selection: $viewModel.initialStatus) {
+
+                Section(header: Text(String(localized: "SectionHeader.InitialStatus"))) {
+                    Picker(String(localized: "Label.Status"), selection: $viewModel.initialStatus) {
                         ForEach(ShelfItem.ReadingStatus.allCases, id: \.self) { status in
                             Text(statusText(status)).tag(status)
                         }
                     }
                 }
             }
-            .navigationTitle("Adicionar Livro")
+            .navigationTitle(String(localized: "NavBar.AddBook"))
             .navigationBarItems(
-                leading: Button("Cancelar") {
+                leading: Button(String(localized: "Button.Cancel")) {
                     presentationMode.wrappedValue.dismiss()
                 },
-                trailing: Button("Adicionar") {
+                trailing: Button(String(localized: "Button.Add")) {
                     let book = Book(id: UUID(),
                                   title: viewModel.title,
                                   author: viewModel.author,
@@ -63,20 +65,20 @@ struct AddBookView: View {
                                   genres: viewModel.genres.isEmpty ? [] : viewModel.genres.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) },
                                   synopsis: viewModel.synopsis,
                                   coverURL: nil)
-                    
+
                     onAdd(book, viewModel.initialStatus)
                     presentationMode.wrappedValue.dismiss()
                 }
-                .disabled(!viewModel.isValid)
             )
+            .disabled(!viewModel.isValid)
         }
     }
-    
+
     private func statusText(_ status: ShelfItem.ReadingStatus) -> String {
         switch status {
-        case .wantToRead: return "Quero Ler"
-        case .reading: return "Lendo"
-        case .read: return "Lido"
+        case .wantToRead: return String(localized: "BookStatus.WantToRead")
+        case .reading: return String(localized: "BookStatus.Reading")
+        case .read: return String(localized: "BookStatus.Read")
         }
     }
 }

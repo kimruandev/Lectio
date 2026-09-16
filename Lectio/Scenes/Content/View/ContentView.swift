@@ -12,17 +12,17 @@ struct ContentView: View {
         TabView {
             BookShelfView()
                 .tabItem {
-                    Label("Estante", systemImage: "books.vertical")
+                    Label(String(localized: "TabBar.Shelf"), systemImage: "books.vertical")
                 }
-            
+
             DiscoverView()
                 .tabItem {
-                    Label("Descobrir", systemImage: "magnifyingglass")
+                    Label(String(localized: "TabBar.Discover"), systemImage: "magnifyingglass")
                 }
-            
+
             ProfileView()
                 .tabItem {
-                    Label("Perfil", systemImage: "person")
+                    Label(String(localized: "TabBar.Profile"), systemImage: "person")
                 }
         }
     }

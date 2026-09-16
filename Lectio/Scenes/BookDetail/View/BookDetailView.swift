@@ -39,12 +39,12 @@ struct BookDetailView: View {
 
                     HStack {
                         Button(action: { /* Update status */ }) {
-                            Label("Atualizar Progresso", systemImage: "book.fill")
+                            Label(String(localized: "Button.UpdateProgress"), systemImage: "book.fill")
                         }
                         .buttonStyle(.borderedProminent)
 
                         Button(action: { showingEditSheet = true }) {
-                            Label("Editar", systemImage: "pencil")
+                            Label(String(localized: "Button.Edit"), systemImage: "pencil")
                         }
                         .buttonStyle(.bordered)
                     }
@@ -53,42 +53,42 @@ struct BookDetailView: View {
 
                 // Details
                 VStack(alignment: .leading, spacing: 12) {
-                    DetailSection(title: "Detalhes") {
+                    DetailSection(title: String(localized: "SectionHeader.Details")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            DetailRow(label: "Páginas", value: "\(shelfItem.pageCount)")
-                            DetailRow(label: "Capítulos", value: shelfItem.chapterCount != nil ? "\(shelfItem.chapterCount!)" : "Não informado")
-                            DetailRow(label: "Gêneros", value: shelfItem.genres.joined(separator: ", "))
+                            DetailRow(label: String(localized: "Label.Pages"), value: "\(shelfItem.pageCount)")
+                            DetailRow(label: String(localized: "Label.Chapters"), value: shelfItem.chapterCount != nil ? "\(shelfItem.chapterCount!)" : String(localized: "DetailView.ChaptersNone"))
+                            DetailRow(label: String(localized: "Label.Genres"), value: shelfItem.genres.joined(separator: ", "))
                         }
                     }
 
                     if !shelfItem.synopsis.isEmpty {
-                        DetailSection(title: "Sinopse") {
+                        DetailSection(title: String(localized: "SectionHeader.Synopsis")) {
                             Text(shelfItem.synopsis)
                                 .foregroundColor(.secondary)
                         }
                     }
 
                     if let rating = shelfItem.rating, rating > 0 {
-                        DetailSection(title: "Sua Avaliação") {
+                        DetailSection(title: String(localized: "SectionHeader.Rating")) {
                             HStack {
                                 ForEach(0..<5) { index in
                                     Image(systemName: index < rating ? "star.fill" : "star")
                                         .foregroundColor(.yellow)
-                                }
+                                    }
                                 Spacer()
                             }
                         }
                     }
 
                     if let notes = shelfItem.notes, !notes.isEmpty {
-                        DetailSection(title: "Notas") {
+                        DetailSection(title: String(localized: "SectionHeader.Notes")) {
                             Text(notes)
                                 .foregroundColor(.secondary)
                         }
                     }
 
                     if let highlights = shelfItem.highlights, !highlights.isEmpty {
-                        DetailSection(title: "Destaques") {
+                        DetailSection(title: String(localized: "SectionHeader.Highlights")) {
                             ForEach(highlights) { highlight in
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text("“\(highlight.text)”")
@@ -156,9 +156,9 @@ struct BookDetailView: View {
 
         private var statusText: String {
             switch status {
-            case .wantToRead: return "Quero Ler"
-            case .reading: return "Lendo"
-            case .read: return "Lido"
+            case .wantToRead: return String(localized: "BookStatus.WantToRead")
+            case .reading: return String(localized: "BookStatus.Reading")
+            case .read: return String(localized: "BookStatus.Read")
             }
         }
 
@@ -216,7 +216,7 @@ struct BookDetailView: View {
             NavigationView {
                 Form {
                     Section(header: StatusBadge(status: shelfItem.status)) {
-                        Picker("Status", selection: Binding(
+                        Picker(String(localized: "Label.Status"), selection: Binding(
                             get: { shelfItem.status },
                             set: { newValue in
                                 // In real app, we'd update a copy
@@ -228,7 +228,7 @@ struct BookDetailView: View {
                         }
                     }
 
-                    Section(header: Text("Avaliação")) {
+                    Section(header: Text(String(localized: "SectionHeader.Evaluation"))) {
                         Stepper(value: Binding(
                             get: { shelfItem.rating ?? 0 },
                             set: { newValue in
@@ -243,13 +243,13 @@ struct BookDetailView: View {
                                     }
                                 }
                             } else {
-                                Text("Sem avaliação")
+                                Text(String(localized: "EditBookView.NoRating"))
                                     .foregroundColor(.secondary)
                             }
                         }
                     }
 
-                    Section(header: Text("Notas")) {
+                    Section(header: Text(String(localized: "SectionHeader.Notes"))) {
                         TextEditor(text: Binding(
                             get: { shelfItem.notes ?? "" },
                             set: { _ in }
@@ -257,12 +257,12 @@ struct BookDetailView: View {
                         .frame(height: 100)
                     }
                 }
-                .navigationTitle("Editar Livro")
+                .navigationTitle(String(localized: "NavBar.EditBook"))
                 .navigationBarItems(
-                    leading: Button("Cancelar") {
+                    leading: Button(String(localized: "Button.Cancel")) {
                         presentationMode.wrappedValue.dismiss()
                     },
-                    trailing: Button("Salvar") {
+                    trailing: Button(String(localized: "Button.Save")) {
                         // In real app, we'd create an updated item and call onSave
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -272,9 +272,9 @@ struct BookDetailView: View {
 
         private func statusText(_ status: ShelfItem.ReadingStatus) -> String {
             switch status {
-            case .wantToRead: return "Quero Ler"
-            case .reading: return "Lendo"
-            case .read: return "Lido"
+            case .wantToRead: return String(localized: "BookStatus.WantToRead")
+            case .reading: return String(localized: "BookStatus.Reading")
+            case .read: return String(localized: "BookStatus.Read")
             }
         }
     }

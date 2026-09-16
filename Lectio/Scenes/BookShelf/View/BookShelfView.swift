@@ -31,7 +31,7 @@ struct BookShelfView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .navigationTitle("Minha Estante")
+            .navigationTitle(String(localized: "NavBar.MyShelf"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingAddBook = true }) {
@@ -59,11 +59,11 @@ struct EmptyStateView: View {
                 .font(.system(size: 50))
                 .foregroundColor(.secondary)
 
-            Text("Sua estante está vazia")
+            Text(String(localized: "EmptyState.ShelfEmpty"))
                 .font(.title2)
                 .fontWeight(.semibold)
 
-            Text("Adicione livros para começar a acompanhar sua leitura")
+            Text(String(localized: "EmptyState.ShelfEmptyDescription"))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -83,8 +83,8 @@ struct ShelfItemRow: View {
                 .frame(width: 60, height: 80)
                 .cornerRadius(8)
                 .overlay(
-                    Text(item.status == .reading ? "Lendo" :
-                         item.status == .wantToRead ? "Quero Ler" : "Lido")
+                    Text(item.status == .reading ? String(localized: "BookStatus.Reading") :
+                         item.status == .wantToRead ? String(localized: "BookStatus.WantToRead") : String(localized: "BookStatus.Read"))
                         .font(.caption)
                         .fontWeight(.bold)
                         .rotationEffect(.degrees(-90))

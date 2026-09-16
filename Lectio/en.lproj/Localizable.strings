@@ -1,0 +1,93 @@
+//
+//  Localizable.strings
+//  Lectio
+//
+//  Created by Kim Lopes on 09/16/26.
+//
+
+/* General App Strings */
+"AppName" = "Lectio";
+
+/* Tab Bar Strings */
+"TabBar.Shelf" = "Estante";
+"TabBar.Discover" = "Descobrir";
+"TabBar.Profile" = "Perfil";
+
+/* Navigation Bar Strings */
+"NavBar.AddBook" = "Adicionar Livro";
+"NavBar.Discover" = "Descobrir";
+"NavBar.MyShelf" = "Minha Estante";
+"NavBar.Profile" = "Meu Perfil";
+"NavBar.EditBook" = "Editar Livro";
+
+/* Button Strings */
+"Button.Cancel" = "Cancelar";
+"Button.Add" = "Adicionar";
+"Button.Save" = "Salvar";
+"Button.UpdateProgress" = "Atualizar Progresso";
+"Button.Edit" = "Editar";
+
+/* TextField and Input Placeholders */
+"Placeholder.BookTitle" = "Título do Livro";
+"Placeholder.Author" = "Autor";
+"Placeholder.Genres" = "Gêneros (separados por vírgula)";
+"Placeholder.GenresExample" = "Ex: Fantasia, Romance, Ficção Científica";
+"Placeholder.Synopsis" = "Sinopse";
+
+/* Stepper Strings */
+"Stepper.Pages" = "páginas";
+"Stepper.ChaptersLabel" = "Capítulos: ";
+"Stepper.ChaptersInfo" = "Capítulos: %d";
+"Stepper.ChaptersNone" = "Capítulos: Não informado";
+
+/* Section Header Strings */
+"SectionHeader.AddBook" = "Adicionar Livro";
+"SectionHeader.InitialStatus" = "Status Inicial";
+"SectionHeader.ReadingPreferences" = "Preferências de Leitura";
+"SectionHeader.Statistics" = "Estatísticas";
+"SectionHeader.Achievements" = "Conquistas";
+"SectionHeader.ProfileInfo" = "Informações do Perfil";
+"SectionHeader.Details" = "Detalhes";
+"SectionHeader.Synopsis" = "Sinopse";
+"SectionHeader.Rating" = "Sua Avaliação";
+"SectionHeader.Notes" = "Notas";
+"SectionHeader.Highlights" = "Destaques";
+"SectionHeader.Evaluation" = "Avaliação";
+
+/* Label Strings */
+"Label.Points" = "Pontos";
+"Label.BooksRead" = "Livros Lidos";
+"Label.StreakDays" = "Dia(s) de Streak";
+"Label.Pages" = "Páginas";
+"Label.Chapters" = "Capítulos";
+"Label.Genres" = "Gêneros";
+"Label.Status" = "Status";
+"Label.ReaderProfile" = "Perfil de Leitor";
+"Label.Notifications" = "Receber Lembretes";
+"Label.NoAchievements" = "Nenhuma conquista ainda";
+
+/* Empty State Strings */
+"EmptyState.ShelfEmpty" = "Sua estante está vazia";
+"EmptyState.ShelfEmptyDescription" = "Adicione livros para começar a acompanhar sua leitura";
+
+/* Book Status Strings (from ShelfItem.ReadingStatus) */
+"BookStatus.WantToRead" = "Quero Ler";
+"BookStatus.Reading" = "Lendo";
+"BookStatus.Read" = "Lido";
+
+/* Reader Profile Strings (from User.ReaderProfile) */
+"ReaderProfile.Fantasy" = "Fantasia";
+"ReaderProfile.Romance" = "Romance";
+"ReaderProfile.SciFi" = "Ficção Científica";
+"ReaderProfile.General" = "Geral";
+
+/* DetailView Strings */
+"DetailView.PagesInfo" = "%d páginas";
+"DetailView.ChaptersInfo" = "%d capítulos";
+"DetailView.ChaptersNone" = "Não informado";
+
+/* EditBookView Strings */
+"EditBookView.NoRating" = "Sem avaliação";
+
+/* BookCard Strings */
+"BookCard.AuthorPrefix" = "por";

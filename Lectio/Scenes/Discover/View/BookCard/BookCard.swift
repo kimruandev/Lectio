@@ -23,7 +23,7 @@ struct BookCard: View {
                             .multilineTextAlignment(.center)
                             .padding([.leading, .trailing], 8)
 
-                        Text("por \(book.author)")
+                        Text(String(localized: "BookCard.AuthorPrefix") + " \(book.author)")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -39,7 +39,7 @@ struct BookCard: View {
                     .foregroundColor(.secondary)
 
                 HStack {
-                    Label("\(book.pageCount) páginas", systemImage: "book.fill")
+                    Label("\(book.pageCount) \(String(localized: "Stepper.Pages"))", systemImage: "book.fill")
                     Spacer()
                     Label("\(book.genres.joined(separator: ", "))", systemImage: "tag.fill")
                 }
